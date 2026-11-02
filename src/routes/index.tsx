@@ -250,7 +250,7 @@ function Index() {
               <section className={`${card} p-3`}>
                 <h2 className="text-[16px] font-bold">Stok Yaşlandırma <span className="font-medium">(Değer)</span></h2>
                 <div className="mt-3 flex h-8 overflow-hidden rounded-full text-[13px] font-semibold">
-                  {aging.map(([p, , c], i) => <div key={i} className={`${c} flex items-center justify-center`} style={{ width: p.slice(1) + "%" }}>{p}</div>)}
+                  {aging.map(([p, , c], i) => <div key={i} className={`${c} flex items-center justify-center`} style={{ width: (p ?? "").slice(1) + "%" }}>{p}</div>)}
                 </div>
                 <div className="mt-3 grid grid-cols-5 text-[12.5px]">
                   {aging.map(([p, l, , d]) => <div key={l}><div className="flex items-center gap-1.5"><span className={`h-2.5 w-2.5 rounded-full ${d}`} />{l}</div><div className="pl-4 font-semibold">{p}</div></div>)}
