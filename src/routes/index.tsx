@@ -37,7 +37,7 @@ function Sidebar() {
   ];
   return (
     <aside className="fixed inset-y-0 left-0 flex w-[198px] flex-col bg-sidebar text-sidebar-foreground">
-      <div className="flex items-center gap-2 px-5 py-5 text-[17px] font-bold text-sidebar-accent-foreground">
+      <div className="flex items-center gap-2 px-5 py-5 whitespace-nowrap text-[15px] font-bold text-sidebar-accent-foreground">
         <Hexagon className="fill-primary text-primary" size={22} /> İnşaatÇevrem ERP
       </div>
       <nav className="flex-1 space-y-0.5 px-3 text-[13.5px]">
@@ -52,7 +52,7 @@ function Sidebar() {
         <div className="space-y-1 py-1 pl-4 text-[13px]">
           <div className="flex items-center gap-2 px-3 py-2"><span className="h-1 w-1 rounded-full bg-sidebar-foreground" />Satış Raporları</div>
           <div className="rounded-md bg-primary px-5 py-2 font-semibold text-primary-foreground">Stok Analizleri</div>
-          <div className="px-5 py-2">Satın Alma Raporları</div>
+          <div className="whitespace-nowrap px-5 py-2">Satın Alma Raporları</div>
           <div className="px-5 py-2">Finansal Raporlar</div>
         </div>
         {[[<ClipboardList key="t" size={17} />, "Tanımlar"], [<Settings key="a" size={17} />, "Ayarlar"]].map(([i, l]) => (
@@ -70,7 +70,7 @@ function Sidebar() {
 
 function Select({ icon, label }: { icon: ReactNode; label: string }) {
   return (
-    <button className="flex h-9 items-center gap-2 rounded-md border border-border bg-card px-3 text-[13px] font-medium">
+    <button className="whitespace-nowrap flex h-9 items-center gap-2 rounded-md border border-border bg-card px-3 text-[13px] font-medium">
       {icon}<span className="mr-6">{label}</span><ChevronDown size={15} />
     </button>
   );
@@ -88,9 +88,9 @@ function Kpi({ icon, iconBg, title, value, valueCls = "", sub }: { icon: ReactNo
     <div className={`${card} flex flex-1 gap-3 p-3`}>
       <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${iconBg}`}>{icon}</div>
       <div className="min-w-0">
-        <div className="text-[12.5px] font-medium">{title}</div>
-        <div className={`text-[21px] font-bold leading-tight ${valueCls}`}>{value}</div>
-        <div className="text-[11px] text-muted-foreground">{sub}</div>
+        <div className="whitespace-nowrap text-[12.5px] font-medium">{title}</div>
+        <div className={`whitespace-nowrap text-[20px] font-bold leading-tight ${valueCls}`}>{value}</div>
+        <div className="whitespace-nowrap text-[11px] text-muted-foreground">{sub}</div>
       </div>
     </div>
   );
@@ -110,8 +110,8 @@ const health = [
 
 const trend = Array.from({ length: 31 }, (_, i) => ({
   d: i + 1,
-  s: 6400 + Math.sin(i / 2) * 300 - i * 15 + (i > 26 ? (i - 26) * 120 : 0),
-  q: 1500 + Math.sin(i / 2.3) * 250 + i * 18 - (i > 28 ? 300 : 0),
+  s: 6400 + Math.sin(i / 1.3) * 250 - i * 15 + (i > 26 ? (i - 26) * 120 : 0),
+  q: 1500 + Math.sin(i / 1.6) * 220 + i * 18 - (i > 28 ? 300 : 0),
 }));
 
 const aging = [
@@ -140,13 +140,13 @@ function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <Sidebar />
       <div className="ml-[198px]">
-        <header className="flex h-10 items-center justify-between border-b border-border bg-card px-5 text-[13px]">
+        <header className="whitespace-nowrap flex h-10 items-center justify-between border-b border-border bg-card px-5 text-[13px]">
           <div className="flex items-center gap-2"><span>Raporlar</span><ChevronRight size={13} /><span className="font-semibold">Stok Analiz Merkezi</span></div>
           <div className="flex items-center gap-5">
-            <div className="flex h-7 w-60 items-center gap-2 rounded-md border border-border px-2 text-muted-foreground"><Search size={15} /><input className="w-full bg-transparent text-[12px] outline-none" placeholder="Ürün, kod, barkod ara..." /></div>
+            <div className="whitespace-nowrap flex h-7 w-60 items-center gap-2 rounded-md border border-border px-2 text-muted-foreground"><Search size={15} /><input className="w-full bg-transparent text-[12px] outline-none" placeholder="Ürün, kod, barkod ara..." /></div>
             <div className="relative"><Bell size={18} /><span className="absolute -right-0.5 -top-0.5 h-2 w-2 rounded-full bg-danger" /></div>
             <HelpCircle size={18} />
-            <div className="flex items-center gap-1"><div className="flex h-7 w-7 items-center justify-center rounded-full bg-muted text-[11px] font-semibold">MK</div><ChevronDown size={14} /></div>
+            <div className="flex items-center gap-1"><div className="whitespace-nowrap flex h-7 w-7 items-center justify-center rounded-full bg-muted text-[11px] font-semibold">MK</div><ChevronDown size={14} /></div>
           </div>
         </header>
 
@@ -164,7 +164,7 @@ function Index() {
                 <Select icon={<Calendar size={15} />} label="Son 30 Gün" />
                 <Select icon={<MapPin size={15} />} label="Tüm Depolar" />
                 <Select icon={<Layers size={15} />} label="Tüm Kategoriler" />
-                <button className="flex h-9 items-center gap-2 rounded-md bg-primary px-5 text-[13px] font-semibold text-primary-foreground"><RefreshCw size={15} />Analizi Yenile</button>
+                <button className="whitespace-nowrap flex h-9 items-center gap-2 rounded-md bg-primary px-5 text-[13px] font-semibold text-primary-foreground"><RefreshCw size={15} />Analizi Yenile</button>
               </div>
             </div>
 
@@ -212,7 +212,7 @@ function Index() {
                 <div className="flex items-center gap-6">
                   <div className="relative h-[190px] w-[190px]">
                     <ResponsiveContainer>
-                      <PieChart><Pie data={health} dataKey="v" innerRadius={58} outerRadius={88} startAngle={90} endAngle={-270} stroke="var(--card)" strokeWidth={2}>
+                      <PieChart><Pie data={health} dataKey="v" innerRadius={58} outerRadius={88} startAngle={90} endAngle={-270} stroke="var(--card)" strokeWidth={2} isAnimationActive={false}>
                         {health.map((h) => <Cell key={h.n} fill={h.c} />)}
                       </Pie></PieChart>
                     </ResponsiveContainer>
@@ -234,14 +234,14 @@ function Index() {
                   <h2 className="text-[16px] font-bold">Satış – Stok Trendi</h2>
                   <div className="flex gap-5 text-[12px]"><span className="flex items-center gap-1.5"><span className="h-2 w-3.5 rounded-full bg-primary" />Satış (adet)</span><span className="flex items-center gap-1.5"><span className="h-2 w-3.5 rounded-full bg-success" />Stok (adet)</span></div>
                 </div>
-                <div className="h-[115px]">
+                <div className="h-[125px]">
                   <ResponsiveContainer>
                     <AreaChart data={trend} margin={{ top: 8, right: 8, left: -14, bottom: 0 }}>
                       <CartesianGrid vertical={false} stroke="var(--border)" />
                       <XAxis dataKey="d" ticks={[1, 5, 10, 15, 20, 25, 30]} tickFormatter={(v) => `${v} Oca`} tick={{ fontSize: 11, fill: "var(--foreground)" }} axisLine={false} tickLine={false} />
                       <YAxis ticks={[0, 2000, 4000, 6000, 8000]} domain={[0, 8000]} tickFormatter={(v) => v ? v.toLocaleString("tr-TR", { minimumFractionDigits: 0 }).replace(",", ".") : "0"} tick={{ fontSize: 11, fill: "var(--foreground)" }} axisLine={false} tickLine={false} />
-                      <Area dataKey="s" stroke="var(--success)" strokeWidth={2} fill="var(--success-soft)" dot={{ r: 1.5 }} />
-                      <Area dataKey="q" stroke="var(--primary)" strokeWidth={2} fill="var(--info-soft)" dot={{ r: 1.5 }} />
+                      <Area dataKey="s" stroke="var(--success)" strokeWidth={2} fill="var(--success-soft)" dot={{ r: 1.5 }} isAnimationActive={false} />
+                      <Area dataKey="q" stroke="var(--primary)" strokeWidth={2} fill="var(--info-soft)" dot={{ r: 1.5 }} isAnimationActive={false} />
                     </AreaChart>
                   </ResponsiveContainer>
                 </div>
@@ -266,8 +266,8 @@ function Index() {
                   ))}
                 </div>
                 <div className="flex gap-2">
-                  <button className="flex h-8 items-center gap-2 rounded-md border border-border px-5 text-[12.5px]"><Columns3 size={15} />Sütunlar</button>
-                  <button className="flex h-8 items-center gap-2 rounded-md border border-border px-4 text-[12.5px]"><FileSpreadsheet size={15} className="text-success" />Excel</button>
+                  <button className="whitespace-nowrap flex h-8 items-center gap-2 rounded-md border border-border px-5 text-[12.5px]"><Columns3 size={15} />Sütunlar</button>
+                  <button className="whitespace-nowrap flex h-8 items-center gap-2 rounded-md border border-border px-4 text-[12.5px]"><FileSpreadsheet size={15} className="text-success" />Excel</button>
                 </div>
               </div>
               <table className="w-full text-[12.5px]">
@@ -291,16 +291,16 @@ function Index() {
                 </tbody>
               </table>
               <div className="flex gap-2 p-2 text-[12.5px]">
-                <span className="flex h-8 items-center rounded-md bg-info-soft px-5 font-medium text-primary">{sel.length} ürün seçildi</span>
-                <button className="flex h-8 items-center gap-2 rounded-md bg-primary px-5 font-medium text-primary-foreground"><ShoppingCart size={15} />Satın Alma Talebi Oluştur</button>
-                <button className="flex h-8 items-center gap-2 rounded-md border border-border px-4"><ArrowLeftRight size={15} />Depolar Arası Transfer</button>
-                <button className="flex h-8 items-center gap-2 rounded-md border border-border px-4"><Download size={15} />Dışa Aktar<ChevronDown size={14} /></button>
+                <span className="whitespace-nowrap flex h-8 items-center rounded-md bg-info-soft px-5 font-medium text-primary">{sel.length} ürün seçildi</span>
+                <button className="whitespace-nowrap flex h-8 items-center gap-2 rounded-md bg-primary px-5 font-medium text-primary-foreground"><ShoppingCart size={15} />Satın Alma Talebi Oluştur</button>
+                <button className="whitespace-nowrap flex h-8 items-center gap-2 rounded-md border border-border px-4"><ArrowLeftRight size={15} />Depolar Arası Transfer</button>
+                <button className="whitespace-nowrap flex h-8 items-center gap-2 rounded-md border border-border px-4"><Download size={15} />Dışa Aktar<ChevronDown size={14} /></button>
               </div>
             </section>
           </main>
 
           {panel && (
-            <aside className={`${card} w-[360px] shrink-0 space-y-3 self-start p-3`}>
+            <aside className={`${card} w-[350px] shrink-0 space-y-3 self-start p-3`}>
               <div className="flex items-center justify-between"><h2 className="text-[19px] font-bold">Ürün Analizi</h2><button onClick={() => setPanel(false)}><X size={20} /></button></div>
               <div className="flex items-center gap-3">
                 <img src={cement} alt="Çimento 50 kg" className="h-16 w-16 rounded border border-border object-contain" width={64} height={64} />
@@ -331,7 +331,7 @@ function Index() {
                 {["Satış hızı, tedarik süresi ve emniyet stoğu dikkate alındı.", "Açık sipariş bulunmuyor.", "Paket katı: 25 torba (öneri 150 torba)."].map((t) => <div key={t} className="flex items-center gap-2 py-0.5"><CheckCircle2 size={15} className="text-success" />{t}</div>)}
               </div>
               <div className="flex gap-2 pt-4">
-                <button className="flex h-10 flex-1 items-center justify-center gap-2 rounded-md bg-primary text-[13.5px] font-semibold text-primary-foreground"><ShoppingCart size={17} />Satın Alma Talebi Oluştur</button>
+                <button className="whitespace-nowrap flex h-10 flex-1 items-center justify-center gap-2 rounded-md bg-primary text-[13.5px] font-semibold text-primary-foreground"><ShoppingCart size={17} />Satın Alma Talebi Oluştur</button>
                 <button className="h-10 rounded-md border border-border px-4 text-[13.5px] font-semibold">Detaylı Analiz</button>
               </div>
             </aside>
