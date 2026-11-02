@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import {
   Home, ShoppingCart, ShoppingBag, Box, Contact, Landmark, BarChart3, ChevronDown, ChevronUp,
   ClipboardList, Settings, Zap, Search, Bell, HelpCircle, Calendar, MapPin, Layers, RefreshCw,
@@ -36,7 +36,7 @@ function Sidebar() {
     [<Contact key="c" size={17} />, "Cari Hesaplar", true], [<Landmark key="f" size={17} />, "Finans", true],
   ];
   return (
-    <aside className="fixed inset-y-0 left-0 flex w-[198px] flex-col bg-sidebar text-sidebar-foreground">
+    <aside className="absolute inset-y-0 left-0 flex w-[198px] flex-col bg-sidebar text-sidebar-foreground">
       <div className="flex items-center gap-2 px-5 py-5 whitespace-nowrap text-[15px] font-bold text-sidebar-accent-foreground">
         <Hexagon className="fill-primary text-primary" size={22} /> İnşaatÇevrem ERP
       </div>
@@ -135,9 +135,16 @@ function Index() {
   const [ptab, setPtab] = useState("Özet");
   const [sel, setSel] = useState<number[]>([0]);
   const [panel, setPanel] = useState(true);
+  const [zoom, setZoom] = useState(1);
+  useEffect(() => {
+    const f = () => setZoom(window.innerWidth / 1672);
+    f();
+    window.addEventListener("resize", f);
+    return () => window.removeEventListener("resize", f);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="relative min-h-screen w-[1672px] bg-background text-foreground" style={{ zoom }}>
       <Sidebar />
       <div className="ml-[198px]">
         <header className="whitespace-nowrap flex h-10 items-center justify-between border-b border-border bg-card px-5 text-[13px]">
@@ -300,7 +307,7 @@ function Index() {
           </main>
 
           {panel && (
-            <aside className={`${card} w-[340px] shrink-0 space-y-3 self-start p-3`}>
+            <aside className={`${card} w-[360px] shrink-0 space-y-3 self-start p-3`}>
               <div className="flex items-center justify-between"><h2 className="text-[19px] font-bold">Ürün Analizi</h2><button onClick={() => setPanel(false)}><X size={20} /></button></div>
               <div className="flex items-center gap-3">
                 <img src={cement} alt="Çimento 50 kg" className="h-16 w-16 rounded border border-border object-contain" width={64} height={64} />
@@ -332,7 +339,7 @@ function Index() {
               </div>
               <div className="flex gap-2 pt-4">
                 <button className="whitespace-nowrap flex h-10 flex-1 items-center justify-center gap-2 rounded-md bg-primary text-[13.5px] font-semibold text-primary-foreground"><ShoppingCart size={17} />Satın Alma Talebi Oluştur</button>
-                <button className="h-10 rounded-md border border-border px-4 text-[13.5px] font-semibold">Detaylı Analiz</button>
+                <button className="h-10 whitespace-nowrap rounded-md border border-border px-4 text-[13.5px] font-semibold">Detaylı Analiz</button>
               </div>
             </aside>
           )}
