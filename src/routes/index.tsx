@@ -85,11 +85,11 @@ const tabs: [ReactNode, string][] = [
 
 function Kpi({ icon, iconBg, title, value, valueCls = "", sub }: { icon: ReactNode; iconBg: string; title: string; value: string; valueCls?: string; sub: ReactNode }) {
   return (
-    <div className={`${card} flex flex-1 gap-3 p-3`}>
-      <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${iconBg}`}>{icon}</div>
+    <div className={`${card} flex min-w-0 flex-1 gap-2 overflow-hidden p-2.5`}>
+      <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${iconBg}`}>{icon}</div>
       <div className="min-w-0">
         <div className="whitespace-nowrap text-[12.5px] font-medium">{title}</div>
-        <div className={`whitespace-nowrap text-[20px] font-bold leading-tight ${valueCls}`}>{value}</div>
+        <div className={`whitespace-nowrap text-[19px] font-bold leading-tight ${valueCls}`}>{value}</div>
         <div className="whitespace-nowrap text-[11px] text-muted-foreground">{sub}</div>
       </div>
     </div>
@@ -170,7 +170,7 @@ function Index() {
 
             <div className="flex gap-2 border-b border-border pb-2">
               {tabs.map(([i, l]) => (
-                <button key={l} onClick={() => setTab(l)} className={`flex h-9 items-center gap-2 rounded-md px-5 text-[13px] font-semibold ${tab === l ? "bg-primary text-primary-foreground" : "border border-border bg-card"}`}>{i}{l}</button>
+                <button key={l} onClick={() => setTab(l)} className={`flex h-9 items-center gap-2 rounded-md px-4 text-[13px] font-semibold ${tab === l ? "bg-primary text-primary-foreground" : "border border-border bg-card"}`}>{i}{l}</button>
               ))}
             </div>
 
@@ -300,7 +300,7 @@ function Index() {
           </main>
 
           {panel && (
-            <aside className={`${card} w-[350px] shrink-0 space-y-3 self-start p-3`}>
+            <aside className={`${card} w-[340px] shrink-0 space-y-3 self-start p-3`}>
               <div className="flex items-center justify-between"><h2 className="text-[19px] font-bold">Ürün Analizi</h2><button onClick={() => setPanel(false)}><X size={20} /></button></div>
               <div className="flex items-center gap-3">
                 <img src={cement} alt="Çimento 50 kg" className="h-16 w-16 rounded border border-border object-contain" width={64} height={64} />
@@ -326,7 +326,7 @@ function Index() {
                 <div className="mb-2 flex items-center gap-2 text-[15px] font-bold">Yeniden Sipariş Önerisi <Info size={15} /></div>
                 <div className="mb-3 grid grid-cols-[1.4fr_1fr] gap-2">
                   <div className="rounded-md bg-warning-soft p-2"><div>Önerilen Miktar</div><div className="text-[21px] font-bold">150 torba</div></div>
-                  <div className="rounded-md border border-border p-2"><div>Hedef Stok Süresi</div><div className="text-[18px] font-bold">30 gün</div></div>
+                  <div className="whitespace-nowrap rounded-md border border-border p-2"><div>Hedef Stok Süresi</div><div className="text-[18px] font-bold">30 gün</div></div>
                 </div>
                 {["Satış hızı, tedarik süresi ve emniyet stoğu dikkate alındı.", "Açık sipariş bulunmuyor.", "Paket katı: 25 torba (öneri 150 torba)."].map((t) => <div key={t} className="flex items-center gap-2 py-0.5"><CheckCircle2 size={15} className="text-success" />{t}</div>)}
               </div>
